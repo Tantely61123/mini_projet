@@ -10,7 +10,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r flask_app/requirements.txt'
+                bat 'pip install --user --no-cache-dir -r flask_app/requirements.txt'
             }
         }
 
