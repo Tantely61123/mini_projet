@@ -22,7 +22,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t localhost:4000/flask_hello:latest mini_projet/flask_app/'
+                bat 'docker build -t localhost:4000/flask_hello:latest flask_app/'
             }
         }
 
