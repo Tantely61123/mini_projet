@@ -32,11 +32,18 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                bat 'kubectl apply -f mini_projet/flask_app/kubernetes/deployement.yml'
-                bat 'kubectl apply -f mini_projet/flask_app/kubernetes/service.yml'
+stage('Deploy to Kubernetes') {
+    steps {
+        script {
+            // Vérifier que le fichier existe
+            def yamlFile = 'flask_app/kubernetes/deployment.yml'
+            if (fileExists(yamlFile)) {
+                bat "kubectl apply -f ${yamlFile}"
+            } else {
+                error "Fichier de déploiement Kubernetes introuvable: ${yamlFile}"
             }
         }
+    }
+}
     }
 }
